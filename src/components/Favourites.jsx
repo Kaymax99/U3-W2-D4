@@ -1,6 +1,7 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { removeFromFavAction } from "../redux/actions";
 
 const Favourites = () => {
   const goHome = useNavigate();
@@ -30,7 +31,7 @@ const Favourites = () => {
                     className="mr-2"
                     variant="danger"
                     onClick={() => {
-                      dispatch({ type: "REMOVE_FROM_FAV", payload: i });
+                      dispatch(removeFromFavAction(i));
                     }}
                   >
                     <i class="bi bi-heartbreak"></i>

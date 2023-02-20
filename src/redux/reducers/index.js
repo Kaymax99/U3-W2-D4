@@ -1,33 +1,35 @@
-const initialState = {
-  favourites: {
-    content: [],
-  },
-};
+// import { ADD_TO_FAV, REMOVE_FROM_FAV } from "../actions";
 
-const mainReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "ADD_TO_FAV":
-      return {
-        ...state,
-        favourites: {
-          ...state.favourites,
-          content: [...state.favourites.content, action.payload],
-        },
-      };
+// const initialState = {
+//   favourites: {
+//     content: [],
+//   },
+// };
 
-    case "REMOVE_FROM_FAV":
-      return {
-        ...state,
-        favourites: {
-          ...state.favourites,
-          content: state.favourites.content.filter(
-            (_, i) => i !== action.payload
-          ),
-        },
-      };
+// const mainReducer = (state = initialState, action) => {
+//   switch (action.type) {
+//     case ADD_TO_FAV:
+//       return {
+//         ...state,
+//         favourites: {
+//           ...state.favourites,
+//           content: [...state.favourites.content, action.payload],
+//         },
+//       };
 
-    default:
-      return state;
-  }
-};
-export default mainReducer;
+//     case REMOVE_FROM_FAV:
+//       return {
+//         ...state,
+//         favourites: {
+//           ...state.favourites,
+//           content: state.favourites.content.filter(
+//             (_, i) => i !== action.payload
+//           ),
+//         },
+//       };
+
+//     default:
+//       return state;
+//   }
+// };
+// export default mainReducer;
