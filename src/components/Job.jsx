@@ -16,7 +16,7 @@ const Job = ({ data }) => {
           <Button
             className="mr-2"
             onClick={() => {
-              console.log("Dispatched!");
+              // console.log("Dispatched!");
               dispatch(addToFavAction(data.company_name));
             }}
           >

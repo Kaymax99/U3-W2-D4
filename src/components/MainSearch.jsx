@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Row, Col, Form, Alert, Spinner } from "react-bootstrap";
 import FavouritesIndicator from "./FavouritesIndicator";
 import Job from "./Job";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,10 @@ const MainSearch = () => {
   // const [jobs, setJobs] = useState([]);
   const dispatch = useDispatch();
   const availableJobs = useSelector((state) => state.jobs.results);
+  const hasFetchError = useSelector((state) => state.jobs.hasError);
+  const fetchErrorMessage = useSelector((state) => state.jobs.shownError);
+  const isLoading = useSelector((state) => state.jobs.isLoading);
+  const hasDefault = useSelector((state) => state.jobs.default);
 
   const baseEndpoint =
     "https://strive-benchmark.herokuapp.com/api/jobs?search=";
@@ -54,9 +58,32 @@ const MainSearch = () => {
           </Form>
         </Col>
         <Col xs={10} className="mx-auto mb-5">
+          {isLoading && (
+            <div className="text-center mt-5">
+              <Spinner
+                className="mx-auto"
+                animation="border"
+                variant="primary"
+              />
+            </div>
+          )}
+          {hasFetchError && (
+            <Alert variant="danger">
+              {fetchErrorMessage
+                ? fetchErrorMessage
+                : "Sorry, something went wrong while trying to fetch jobs"}
+            </Alert>
+          )}
           {availableJobs.map((jobData) => (
             <Job key={jobData._id} data={jobData} />
           ))}
+          {!hasDefault & (availableJobs.length === 0) ? (
+            <Alert className="mt-2" variant="warning">
+              We're sorry, it seems there are no jobs that match your search.
+            </Alert>
+          ) : (
+            ""
+          )}
         </Col>
       </Row>
     </Container>

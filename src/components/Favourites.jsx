@@ -34,7 +34,7 @@ const Favourites = () => {
                       dispatch(removeFromFavAction(i));
                     }}
                   >
-                    <i class="bi bi-heartbreak"></i>
+                    <i className="bi bi-heartbreak"></i>
                   </Button>
                   <Link to={`/${company}`}>{company}</Link>
                 </li>
